@@ -1,9 +1,8 @@
-import { useId } from "react";
 import { useDispatch } from "react-redux";
-import { addContact } from "../../redux/contactsSlice";
-import { ErrorMessage, Field, Form, Formik } from "formik";
+import { Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 import s from "./ContactForm.module.css";
+import { addContact } from "../../redux/contactsOps";
 
 const contactSchema = Yup.object().shape({
   name: Yup.string()
@@ -24,9 +23,6 @@ const initialValues = {
 const ContactForm = () => {
   const dispatch = useDispatch();
 
-  const nameFieldId = useId();
-  const numberFieldId = useId();
-
   const handleSubmit = (values, actions) => {
     dispatch(addContact(values));
     actions.resetForm();
@@ -39,26 +35,14 @@ const ContactForm = () => {
       validationSchema={contactSchema}
     >
       <Form className={s.form}>
-        <label className={s.inputLabel} htmlFor={nameFieldId}>
+        <label className={s.inputLabel}>
           Name
-          <Field
-            className={s.inputForm}
-            type="text"
-            name="name"
-            id="nameFieldId"
-          />
-          <ErrorMessage className={s.error} name="name" component="span" />
+          <Field className={s.inputForm} type="text" name="name" />
         </label>
 
-        <label className={s.inputLabel} htmlFor={numberFieldId}>
+        <label className={s.inputLabel}>
           Number
-          <Field
-            className={s.inputForm}
-            type="tel"
-            name="number"
-            id="numberFieldId"
-          />
-          <ErrorMessage className={s.error} name="number" component="span" />
+          <Field className={s.inputForm} type="tel" name="number" />
         </label>
 
         <button className={s.btn} type="submit">
@@ -67,31 +51,6 @@ const ContactForm = () => {
       </Form>
     </Formik>
   );
-
-  // return (
-  //   <form className={s.form} onSubmit={handleSubmit}>
-  //     <label className={s.inputLabel} htmlFor="name">
-  //       <span className={s.spanForm}>Name</span>
-  //       <input
-  //         className={s.inputForm}
-  //         type="text"
-  //         name="name"
-  //         id="name"
-  //         required
-  //       />
-  //     </label>
-  //     <label className={s.inputLabel} htmlFor="number">
-  //       <span className={s.spanForm}>Number</span>
-  //       <input
-  //         className={s.inputForm}
-  //         type="tel"
-  //         name="number"
-  //         id="number"
-  //         required
-  //       />
-  //     </label>
-  //   </form>
-  // );
 };
 
 export default ContactForm;
