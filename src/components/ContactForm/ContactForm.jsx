@@ -37,7 +37,11 @@ const ContactForm = () => {
       <Form className={s.form}>
         <label className={s.inputLabel}>
           Name
-          <Field className={s.inputForm} type="text" name="name" />
+          <Field
+            className={s.inputForm}
+            type="text"
+            name="name"
+          />
         </label>
 
         <label className={s.inputLabel}>
