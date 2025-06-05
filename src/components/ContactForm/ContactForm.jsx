@@ -37,16 +37,12 @@ const ContactForm = () => {
       <Form className={s.form}>
         <label className={s.inputLabel}>
           Name
-          <Field
-            className={s.inputForm}
-            type="text"
-            name="name"
-          />
+          <Field className={s.inputForm} type="text" name="name" required />
         </label>
 
         <label className={s.inputLabel}>
           Number
-          <Field className={s.inputForm} type="tel" name="number" />
+          <Field className={s.inputForm} type="tel" name="number" required />
         </label>
 
         <button className={s.btn} type="submit">

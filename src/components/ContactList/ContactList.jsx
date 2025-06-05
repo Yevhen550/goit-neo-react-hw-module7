@@ -6,6 +6,7 @@ import {
   selectFilteredContacts,
   selectLoading,
 } from "../../redux/contactsSlice";
+import Loader from "../Loader/Loader";
 
 const ContactList = () => {
   const contacts = useSelector(selectFilteredContacts);
@@ -14,7 +15,7 @@ const ContactList = () => {
 
   return (
     <>
-      {loading && <p>Loading...</p>}
+      {loading && <Loader />}
       {error && <p>Error: {error}</p>}
       <ul className={s.list}>
         {contacts.map((contact) => (
